@@ -14,7 +14,7 @@ public interface TeacherMapper {
 
     @Mapping(target = "user.email", source = "email")
     @Mapping(target = "user.password", source = "password")
-    @Mapping(target = "user.role", constant = "TEACHER")
+    @Mapping(target = "user.role", ignore = true)
     Teacher toEntity(TeacherRequestDto dto);
 
     TeacherResponseDto toResponse(Teacher teacher);
