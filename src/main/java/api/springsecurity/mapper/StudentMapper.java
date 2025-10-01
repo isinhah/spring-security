@@ -14,8 +14,9 @@ public interface StudentMapper {
 
     @Mapping(target = "user.email", source = "email")
     @Mapping(target = "user.password", source = "password")
-    @Mapping(target = "user.role", constant = "STUDENT")
+    @Mapping(target = "user.role", ignore = true)
     Student toEntity(StudentRequestDto dto);
 
+    @Mapping(target = "email", source = "user.email")
     StudentResponseDto toResponse(Student student);
 }

@@ -23,17 +23,15 @@ public class AuthService {
         User user = userRepository.findByEmail(dto.email())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid email or password"));
 
-        // Verificar senha
         if (!passwordEncoder.matches(dto.password(), user.getPassword())) {
             throw new IllegalArgumentException("Invalid email or password");
         }
 
-        // Gerar token JWT
         String token = jwtService.generateToken(user);
 
-        // Calcular expiração
         Instant expiresAt = jwtService.generateExpirationDate();
 
         return new LoginResponseDto(token, user.getRole().name(), expiresAt);
     }
+
 }
